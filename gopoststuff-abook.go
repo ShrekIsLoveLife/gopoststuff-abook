@@ -1,5 +1,8 @@
 package main
 
+// Author: "Shrek is Love"  BTC: 1ANyHwihu9dL2CZ9LUZ48FdYTzyz8CCCFf
+// Original Author: madcowfred (https://github.com/madcowfred/GoPostStuff/)
+
 import (
 	"gopkg.in/gcfg.v1"
 	"flag"

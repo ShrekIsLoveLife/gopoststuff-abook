@@ -2,7 +2,7 @@ GoPostStuff
 ===========
 
 GoPostStuff is a simple client for posting binaries to Usenet, written in Go. If you've
-seen/used [newsmangler] [1], imagine that but faster (and maybe better one day).
+seen/used [newsmangler] [1], imagine that but faster.
 
   [1]: https://github.com/madcowfred/newsmangler/ "newsmangler"
 
@@ -33,9 +33,9 @@ Installation
         go get github.com/ShrekIsLoveLife/gopoststuff-abook/
         go install github.com/ShrekIsLoveLife/gopoststuff-abook/
 
-3. Copy sample.conf to ~/.gopoststuff.conf and edit the options as appropriate.
+3. Copy sample.gopoststuff.conf to ~/.gopoststuff.conf and edit the options as appropriate.
 
-        cp ~/go/src/github.com/ShrekIsLoveLife/gopoststuff-abook/sample.conf ~/.gopoststuff.conf
+        cp ~/go/src/github.com/ShrekIsLoveLife/gopoststuff-abook/sample.gopoststuff.conf ~/.gopoststuff.conf
         vim ~/.gopoststuff.conf
 
 4. Run gopoststuff!
