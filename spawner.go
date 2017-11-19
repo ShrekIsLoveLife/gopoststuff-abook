@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/ShrekIsLoveLife/Audiobook-Converter/gopoststuff-abook/simplenntp"
+	"github.com/ShrekIsLoveLife/gopoststuff-abook/simplenntp"
 	"os"
 	"path/filepath"
 	"sync"

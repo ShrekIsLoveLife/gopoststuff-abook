@@ -30,12 +30,12 @@ Installation
 
 1.  Get and install GoPostStuff - this will make a ~/go/bin/gopoststuff binary:
 
-        go get github.com/ShrekIsLoveLife/Audiobook-Converter/gopoststuff-abook/
-        go install github.com/ShrekIsLoveLife/Audiobook-Converter/gopoststuff-abook/
+        go get github.com/ShrekIsLoveLife/gopoststuff-abook/
+        go install github.com/ShrekIsLoveLife/gopoststuff-abook/
 
 3. Copy sample.conf to ~/.gopoststuff.conf and edit the options as appropriate.
 
-        cp sample.conf ~/.gopoststuff.conf
+        cp ~/go/src/github.com/ShrekIsLoveLife/gopoststuff-abook/sample.conf ~/.gopoststuff.conf
         vim ~/.gopoststuff.conf
 
 4. Run gopoststuff!
