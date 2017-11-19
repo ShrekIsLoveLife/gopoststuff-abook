@@ -1,10 +1,12 @@
-GoPostStuff
+GoPostStuff-abook
 ===========
 
-GoPostStuff is a simple client for posting binaries to Usenet, written in Go. If you've
+GoPostStuff-abook is a simple client for posting binaries to Usenet, written in Go. If you've
 seen/used [newsmangler] [1], imagine that but faster.
+This is an updated version of [GoPostStuff] [2].
 
   [1]: https://github.com/madcowfred/newsmangler/ "newsmangler"
+  [2]: https://github.com/madcowfred/GoPostStuff/ "GoPostStuff"
 
 Features
 --------
@@ -23,12 +25,12 @@ Requirements
 
 Installation
 ------------
-1. Initalise a directory to store Go files:
+1. Initialize a directory to store Go files:
 
         mkdir ~/go
         export GOPATH=~/go
 
-1.  Get and install GoPostStuff - this will make a ~/go/bin/gopoststuff binary:
+1.  Get and install GoPostStuff-abook - this will make a ~/go/bin/gopoststuff-abook binary:
 
         go get github.com/ShrekIsLoveLife/gopoststuff-abook/
         go install github.com/ShrekIsLoveLife/gopoststuff-abook/
@@ -38,12 +40,12 @@ Installation
         cp ~/go/src/github.com/ShrekIsLoveLife/gopoststuff-abook/sample.gopoststuff.conf ~/.gopoststuff.conf
         vim ~/.gopoststuff.conf
 
-4. Run gopoststuff!
+4. Run gopoststuff-abook!
 
 Usage
 -----
 
-``gopoststuff [-c "CONFIG"] [-d] [-g "GROUP"] [-s "SUBJECT"] [-v] file1 file2 ... fileN``
+``gopoststuff-abook [-c "CONFIG"] [-d] [-g "GROUP"] [-s "SUBJECT"] [-v] file1 file2 ... fileN``
 
 * -allcpus: Use all CPUs for stuff [ALPHA]
 * -c "CONFIG": Use an alternate configuration file.
@@ -71,8 +73,8 @@ Let's say you have some files that you would like to post:
 
 You can post it with the subject "Cool Files" like so:
 
-``gopoststuff -d "Cool Files"``
+``gopoststuff-abook -d "Cool Files"``
 
 or with a different subject like so:
 
-``gopoststuff -s "This is a different subject" "Cool Files"``
+``gopoststuff-abook -s "This is a different subject" "Cool Files"``
