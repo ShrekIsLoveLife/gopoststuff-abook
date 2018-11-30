@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/ShrekIsLoveLife/gopoststuff-abook/simplenntp"
 	"time"
+	"github.com/dustin/go-humanize"
 )
 
 func StatusLogger(ticker *time.Ticker, tdchan chan *simplenntp.TimeData) {
@@ -43,17 +44,17 @@ func StatusLogger(ticker *time.Ticker, tdchan chan *simplenntp.TimeData) {
 				totalBytes += td.Bytes
 			}
 
-			//speed := float64(totalBytes) / float64(active)
+			speed := float64(totalBytes) / float64(active)
 			//speed := float64(totalBytes) / float64(active) / 1024
-			speed, speedUnit := prettySize(float64(totalBytes) / float64(active))
+			//speed, speedUnit := prettySize(float64(totalBytes) / float64(active))
 
 			// Total posted
 			posted := float64(totalPosted) / 1024 / 1024
 
 			// Print it
 			//fmt.Printf("Posted \033[1m%.1f\033[0mMiB - Current speed: \033[1m%.1f\033[0mKiB/s             \r", posted, speed)
-			fmt.Printf("Posted \033[1m%.1f\033[0mMiB - Current speed: \033[1m%.1f\033[0m%s/s             \r", posted, speed, speedUnit)
-
+			fmt.Printf("Posted \033[1m%.1f\033[0mMiB - Current speed: \033[1m%s/s             \r", posted, humanize.Bytes(uint64(speed)))
+			//fmt.Printf("Posted \033[1m%.1f\033[0mMiB - Current speed: \033[1m%.1f\033[0m%s/s             \r", posted, speed, speedUnit)
 			//log.Debug("Current speed: %.1fKB/s", speed)
 		}
 
@@ -70,6 +71,7 @@ func StatusLogger(ticker *time.Ticker, tdchan chan *simplenntp.TimeData) {
 		tds = tds[start:]
 	}
 }
+
 
 func prettySize(b float64) (nb float64, nu string) {
 	units := make(map[string]float64)

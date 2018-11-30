@@ -29,8 +29,15 @@ type ArticleData struct {
 }
 
 func NewArticle(p []byte, data *ArticleData, subject string) *Article {
+    var from string
+    if len(*fromFlag) > 0 {
+        from = *fromFlag
+    } else {
+        from = Config.Global.From
+    }
+
     buf := new(bytes.Buffer)
-    buf.WriteString(fmt.Sprintf("From: %s\r\n", Config.Global.From))
+    buf.WriteString(fmt.Sprintf("From: %s\r\n", from))
 
     var groups string
     if len(*groupFlag) > 0 {
@@ -42,7 +49,12 @@ func NewArticle(p []byte, data *ArticleData, subject string) *Article {
 
     var msgid string
     t := time.Now()
-    msgid = fmt.Sprintf("%.5f$abook@abook", float64(t.UnixNano())/1.0e9)
+    // msgid = fmt.Sprintf("%.5f$gps@%s", float64(t.UnixNano())/1.0e9, *hostFlag)
+    // buf.WriteString(fmt.Sprintf("Message-ID: <%s>\r\n", msgid))
+    // buf.WriteString(fmt.Sprintf("X-Newsposter: KereMagicPoster\r\n"))
+
+    msgid = fmt.Sprintf("%.5f$abook@%s", float64(t.UnixNano())/1.0e9, *hostFlag)
+    // msgid = fmt.Sprintf("%.5f$abook@abook", float64(t.UnixNano())/1.0e9)
     buf.WriteString(fmt.Sprintf("Message-ID: <%s>\r\n", msgid))
     buf.WriteString(fmt.Sprintf("X-Newsposter: ABook\r\n"))
     buf.WriteString(fmt.Sprintf("X-Abuse: ABUSE@usenet.byproxy.au\r\n"))
@@ -52,10 +64,13 @@ func NewArticle(p []byte, data *ArticleData, subject string) *Article {
     buf.WriteString(fmt.Sprintf("Organization: usenet.byproxy.au\r\n"))
     buf.WriteString(fmt.Sprintf("Injection-Info: usenet.byproxy.au; mail-complaints-to=\"ABUSE@usenet.byproxy.au\"\r\n"))
 
+
     // Build subject
     // spec: c1 [fnum/ftotal] - "filename" yEnc (pnum/ptotal)
     var subj string
-    if len(Config.Global.SubjectPrefix) > 0 {
+    if len(*prefixFlag) > 0 {
+        subj = fmt.Sprintf("%s %s", *prefixFlag, subject)
+    } else if len(Config.Global.SubjectPrefix) > 0 {
         subj = fmt.Sprintf("%s %s", Config.Global.SubjectPrefix, subject)
     } else {
         subj = subject
@@ -69,7 +84,7 @@ func NewArticle(p []byte, data *ArticleData, subject string) *Article {
     // yEnc part line
     buf.WriteString(fmt.Sprintf("=ypart begin=%d end=%d\r\n", data.PartBegin+1, data.PartEnd))
 
-    //log.Debug("%+v", buf)
+    //log.Debugf("%+v", buf)
     // Encoded data
     yencode.Encode(p, buf)
     // yEnc end line
@@ -79,7 +94,7 @@ func NewArticle(p []byte, data *ArticleData, subject string) *Article {
     // Nzb
     n := NzbFile{
         Groups:  strings.Split(groups, ","),
-        Poster:  Config.Global.From,
+        Poster:  from,
         Date:    t.Unix(),
         Subject: subj,
     }

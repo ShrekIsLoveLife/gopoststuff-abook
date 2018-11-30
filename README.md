@@ -47,19 +47,27 @@ Usage
 
 ``gopoststuff-abook [-c "CONFIG"] [-d] [-g "GROUP"] [-s "SUBJECT"] [-v] file1 file2 ... fileN``
 
-* -allcpus: Use all CPUs for stuff [ALPHA]
 * -c "CONFIG": Use an alternate configuration file.
+* -allcpus: Use all CPUs for stuff [ALPHA]
 * -cpuprofile "file": Write CPU profiling information to FILE
 * -d: Use directory posting mode. Each fileN argument _must_ be a directory. All files in each
   directory will be posted using the _directory name_ as the subject.
-* -g "GROUP": Post to GROUP instead of the global/DefaultGroup config option.
+* -g "GROUP": Post to GROUP instead of the global/DefaultGroup config option. (comma separated)
 * -s "SUBJECT": Use subject posting mode. All files will be posted using SUBJECT as the subject.
   Directories supplied as arguments are always recursed into.
+* -v: Verbose mode. This will spam a lot of extra debug information.
+* -version: prints the current gps version.
 * -nzb "test.nzb": Create nzb file after posting.
 * -rarpw "PASSWORD": Add password for rar archives to nzb head.
-* -server "SERVER": Use specified server to post.
-* -v: Verbose mode. This will spam a lot of extra debug information.
+* -server "SERVER": Use specified server to post
 * -version: prints the current gopoststuff-abook version.
+* -host: Hostname to use in Message-ID
+* -prefix: String to place at the start of every subject line - a space will be added.
+* -from: The 'From' address to put on posts.
+* -from: The 'From' address to put on posts.
+* -flushcon: The time in seconds between temporary disconnects from the Usenet Server to prevent timeouts. (default 5000)
+* -waittime: The waiting time in seconds time before re-connect for flushcon. (default 10)
+
 
 Example
 -------

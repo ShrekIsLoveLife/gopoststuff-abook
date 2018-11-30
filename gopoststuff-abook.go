@@ -1,5 +1,6 @@
 package main
 
+
 // Author: "Shrek is Love"  BTC: 1ANyHwihu9dL2CZ9LUZ48FdYTzyz8CCCFf
 // Original Author: madcowfred (https://github.com/madcowfred/GoPostStuff/)
 
@@ -7,7 +8,7 @@ import (
 	"gopkg.in/gcfg.v1"
 	"flag"
 	"fmt"
-	"gopkg.in/op/go-logging.v1"
+	"github.com/op/go-logging"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -16,7 +17,7 @@ import (
 )
 
 const (
-	GPS_VERSION = "0.3.3-abook"
+	GPS_VERSION = "0.3.4-abook"
 )
 
 // Command ling flags
@@ -31,7 +32,11 @@ var versionFlag = flag.Bool("version", false, "prints current version")
 var nzbFlag = flag.String("nzb", "", "Nzb filename")
 var nzbMetaPass = flag.String("rarpw", "", "Add password for rar archives to nzb head.")
 var serverFlag = flag.String("server", "", "Use specified server to post.")
-
+var hostFlag = flag.String("host", "abook", "Hostname to use in Message-ID")
+var prefixFlag = flag.String("prefix", "", "String to place at the start of every subject line - a space will be added.")
+var fromFlag = flag.String("from", "", "The 'From' address to put on posts.")
+var flushConFlag = flag.String("flushcon", "5000", "The time in seconds between temporary disconnects from the Usenet Server to prevent timeouts.")
+var waitTimeFlag = flag.String("waittime", "10", "The waiting time in seconds time before re-connect for flushcon.")
 // Logger
 var log = logging.MustGetLogger("gopoststuff-abook")
 
@@ -79,6 +84,7 @@ func main() {
 	}
 
 	var format = logging.MustStringFormatter(" %{level: -8s} %{message}")
+
 	// Set up logging
 	if *verboseFlag {
 		format = logging.MustStringFormatter(" %{level: -8s} %{shortfile} %{message}")
@@ -126,7 +132,7 @@ func main() {
 		cfgFile = filepath.Join(u.HomeDir, ".gopoststuff.conf")
 	}
 
-	log.Debug("Reading config from %s", cfgFile)
+	log.Debugf("Reading config from %s", cfgFile)
 
 	err := gcfg.ReadFileInto(&Config, cfgFile)
 	if err != nil {
@@ -142,7 +148,7 @@ func main() {
 	if *allCpuFlag {
 		runtime.GOMAXPROCS(runtime.NumCPU())
 	}
-	log.Info("Using %d/%d CPUs", runtime.GOMAXPROCS(0), runtime.NumCPU())
+	log.Infof("Using %d/%d CPUs", runtime.GOMAXPROCS(0), runtime.NumCPU())
 
 	// Set up CPU profiling
 	if *cpuProfileFlag != "" {
@@ -159,6 +165,6 @@ func main() {
 	Spawner(flag.Args())
 
 	if *cpuProfileFlag != "" {
-		log.Info("CPU profiling data saved to %s", *cpuProfileFlag)
+		log.Infof("CPU profiling data saved to %s", *cpuProfileFlag)
 	}
 }
