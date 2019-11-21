@@ -2,7 +2,7 @@ End of Support
 --------------
 I am no longer planning on updating or maintaining this.
 I have moved to nyuu.
-There is lack of support or compatiability in some VPS technologies that make this non-viable to keep up. I was going to write some wrappers that emulate mmap on Windows and older Kernels or certain vm and container technologies, but nyuu exists and works for my needs.
+There is lack of support or compatibility in some VPS technologies that make this non-viable to keep up. I was going to write some wrappers that emulate mmap on Windows and older Kernels or certain vm and container technologies, but nyuu exists and works for my needs.
 
 
 GoPostStuff-abook

@@ -98,7 +98,7 @@ func main() {
 
 	// Make sure -d or -s was specified
 	if len(*subjectFlag) == 0 && !*dirSubjectFlag {
-		log.Fatal("Need to specify -d or -s option, try gopoststuff-abookk --help")
+		log.Fatal("Need to specify -d or -s option, try gopoststuff-abook --help")
 	}
 
 	// Check arguments
