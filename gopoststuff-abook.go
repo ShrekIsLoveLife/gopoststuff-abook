@@ -88,17 +88,17 @@ func main() {
 	// Set up logging
 	if *verboseFlag {
 		format = logging.MustStringFormatter(" %{level: -8s} %{shortfile} %{message}")
-		logging.SetLevel(logging.DEBUG, "gopoststuff")
+		logging.SetLevel(logging.DEBUG, "gopoststuff-abook")
 	} else {
-		logging.SetLevel(logging.INFO, "gopoststuff")
+		logging.SetLevel(logging.INFO, "gopoststuff-abook")
 	}
 	logging.SetFormatter(format)
 
-	log.Info("gopoststuff starting...")
+	log.Info("gopoststuff-abook starting...")
 
 	// Make sure -d or -s was specified
 	if len(*subjectFlag) == 0 && !*dirSubjectFlag {
-		log.Fatal("Need to specify -d or -s option, try gopoststuff --help")
+		log.Fatal("Need to specify -d or -s option, try gopoststuff-abookk --help")
 	}
 
 	// Check arguments
